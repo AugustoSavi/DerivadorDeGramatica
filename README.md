@@ -41,7 +41,7 @@ $ python3 main.py
 ![image](https://user-images.githubusercontent.com/32443720/94982130-8260e000-050e-11eb-8b63-fda5f82d300b.png)
 
 
-###  Apos terminar de informar a gramatica, informe em que "Não terminal" a derivação deve começar e apos isso é só clicar em "Start"
+###  Apos terminar de informar a gramatica, informe em "Não terminal" por onde derivação deve começar, após isso é só clicar em "Start"
 ![image](https://user-images.githubusercontent.com/32443720/94982178-ed121b80-050e-11eb-9c2e-1d499c6ed77a.png)
 
 
