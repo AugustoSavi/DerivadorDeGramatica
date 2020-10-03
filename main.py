@@ -21,7 +21,8 @@ class Application():
         self.root.title('Derivador')
         self.root.geometry('700x350')
         self.root.resizable(False,False)
-    
+
+    # cria os frames para adcionar os componentes
     def frame(self):
         self.frame = Frame(self.root)
         self.frame.place(relx = 0 , rely = 0,relwidth = 1, relheight = 1)
@@ -142,10 +143,6 @@ class Application():
                 break
 
 
-
-
-
-
     def stop(self):
         self.stop_threads = True
 
@@ -171,12 +168,14 @@ class Application():
         # Adciona os valores do array
         derivacao[naoTerminal] = terminais 
 
-        print(derivacao)
+        #print(derivacao)
 
         self.inputGramaticaText.delete(0,END)
 
 
     def Exemplo1(self):
+        self.textBoxGramatica.delete('1.0',END)
+        self.textBoxDerivacao.delete('1.0',END)
         global derivacao    
         derivacao.clear()
         derivacao = {'S': ['aCb'], 'C': ['ab']}
@@ -185,6 +184,8 @@ class Application():
         self.inputNaoTerminalInicial.insert(END,'S')
     
     def Exemplo2(self):
+        self.textBoxGramatica.delete('1.0',END)
+        self.textBoxDerivacao.delete('1.0',END)
         global derivacao    
         derivacao.clear()
         derivacao = {'S': ['Cde', 'deA'], 'A': ['Ea', 'D', 'S'], 'C': ['ded'], 'D': ['deA', 'S'], 'E': ['ead']}
@@ -193,6 +194,8 @@ class Application():
         self.inputNaoTerminalInicial.insert(END,'S')
 
     def Exemplo3(self):
+        self.textBoxGramatica.delete('1.0',END)
+        self.textBoxDerivacao.delete('1.0',END)
         global derivacao    
         derivacao.clear()
         derivacao = {'S': ['ABC'], 'C': ['BaB', 'c'], 'B': ['b', 'bb'], 'A': ['a']}
