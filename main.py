@@ -43,6 +43,24 @@ class Application():
         self.btnInput = Button(self.frame, text = 'Input', command = self.inputGramatica)
         self.btnInput.place( relx = 0.37, rely = 0.07, width = 80, height = 30)
 
+        #Bottao Input
+        self.btnInput = Button(self.frame, text = 'Input', command = self.inputGramatica)
+        self.btnInput.place( relx = 0.37, rely = 0.07, width = 80, height = 30)
+
+        #Exemplos
+        #Bottao Exemplo1 
+        self.btnExemplo1 = Button(self.frame, text = 'Exemplo 1', command = self.Exemplo1)
+        self.btnExemplo1.place ( relx = 0.8, rely = 0.65, width = 130, height = 30)
+
+        #Bottao Exemplo2 
+        self.btnExemplo2 = Button(self.frame, text = 'Exemplo 2', command = self.Exemplo2)
+        self.btnExemplo2.place ( relx = 0.8, rely = 0.75, width = 130, height = 30)
+        
+        #Bottao Exemplo3 
+        self.btnExemplo3 = Button(self.frame, text = 'Exemplo3', command = self.Exemplo3)
+        self.btnExemplo3.place ( relx = 0.8, rely = 0.85, width = 130, height = 30)
+               
+
 
     def inputs(self):
         #input das gramticas
@@ -63,7 +81,7 @@ class Application():
         self.labelGramatica = Label(self.frame, text = 'Gramatica:')
         self.labelGramatica.place(relx = 0.02, rely = 0.18)
 
-        self.textBoxGramatica = Text(self.frame,height=13, width =30, state = 'disabled')
+        self.textBoxGramatica = Text(self.frame,height=13, width =30)
         self.textBoxGramatica.place(relx = 0.02, rely = 0.25)
 
         #Derivacao
@@ -77,14 +95,14 @@ class Application():
     def clear(self):
         global derivacao    
         derivacao.clear()
-        
-        self.textBoxGramatica.config(state = 'normal')
+        self.inputNaoTerminalInicial.delete(0,END)
+        #self.textBoxGramatica.config(state = 'normal')
         self.textBoxGramatica.delete('1.0',END)
-        self.textBoxGramatica.config(state = 'disabled')
+        #self.textBoxGramatica.config(state = 'disabled')
 
-        self.textBoxDerivacao.config(state = 'normal')
+        #self.textBoxDerivacao.config(state = 'normal')
         self.textBoxDerivacao.delete('1.0',END)
-        self.textBoxDerivacao.config(state = 'disabled')
+        #self.textBoxDerivacao.config(state = 'disabled')
             
             
     def start(self):
@@ -92,6 +110,7 @@ class Application():
         self.startThreading.start()
         
     def derivacao(self):
+        self.textBoxDerivacao.delete('1.0',END)
 
         if (len(derivacao[self.inputNaoTerminalInicial.get()]) == 1):
             tamanhoVetor = 0
@@ -119,7 +138,7 @@ class Application():
             if (gramaticaASerDerivada.islower()):
                 break
             if self.stop_threads: 
-                print("Loop Terminado")
+                #print("Loop Terminado")
                 break
 
 
@@ -132,9 +151,9 @@ class Application():
 
     
     def inputGramatica(self):
-        self.textBoxGramatica.config(state = 'normal')
+        #self.textBoxGramatica.config(state = 'normal')
         self.textBoxGramatica.insert(END,"{}{}".format(self.inputGramaticaText.get(), '\n') )
-        self.textBoxGramatica.config(state = 'disabled')
+        #self.textBoxGramatica.config(state = 'disabled')
         
         # Faz o split para dividir o terminal do nao terminal 
         inputDeGramatica = self.inputGramaticaText.get().split('=')
@@ -156,6 +175,31 @@ class Application():
 
         self.inputGramaticaText.delete(0,END)
 
+
+    def Exemplo1(self):
+        global derivacao    
+        derivacao.clear()
+        derivacao = {'S': ['aCb'], 'C': ['ab']}
+        self.textBoxGramatica.insert(END,"S = aCb\nC = ab")
+        self.inputNaoTerminalInicial.delete(0,END)
+        self.inputNaoTerminalInicial.insert(END,'S')
+    
+    def Exemplo2(self):
+        global derivacao    
+        derivacao.clear()
+        derivacao = {'S': ['Cde', 'deA'], 'A': ['Ea', 'D', 'S'], 'C': ['ded'], 'D': ['deA', 'S'], 'E': ['ead']}
+        self.textBoxGramatica.insert(END,"S = Cde|deA\nA = Ea|D|S\nC = ded\nD = deA|S\nE = ead")
+        self.inputNaoTerminalInicial.delete(0,END)
+        self.inputNaoTerminalInicial.insert(END,'S')
+
+    def Exemplo3(self):
+        global derivacao    
+        derivacao.clear()
+        derivacao = {'S': ['ABC'], 'C': ['BaB', 'c'], 'B': ['b', 'bb'], 'A': ['a']}
+        self.textBoxGramatica.insert(END,"S = ABC\nC = BaB|c\nB = b|bb\nA = a")
+        self.inputNaoTerminalInicial.delete(0,END)
+        self.inputNaoTerminalInicial.insert(END,'S')
+        
 
 
 Application()
